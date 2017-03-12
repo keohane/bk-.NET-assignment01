@@ -1,0 +1,61 @@
+﻿@model Assignment1.Models.IndexViewModel
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Index";
+}
+
+<style>
+
+</style>
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <div class="material-card1">
+                <div class="page-header">
+                    <h1>Blog Posts</h1>
+
+                    @if (Model.User != null)
+                    {
+                        <small>Welcome, @Model.User.FirstName @Model.User.LastName!</small>
+                    }
+
+                </div>
+                @if (Model.BlogPosts != null || Model.BlogPosts.Count() > 0)
+                {
+                    @foreach (var blog in Model.BlogPosts)
+                    {
+                        <div class="post">
+                            <h4><a href="/Home/DisplayFullBlogPost/@blog.BlogPostId">@blog.Title</a></h4>
+                            <h5>Date Posted: @blog.Posted</h5>
+
+                            @if (blog.Content.Count() > 100)
+                            {
+                                string str = @blog.Content.Substring(0, 100).ToString();
+
+                                <p>@str...</p>
+                            }
+                            else
+                            {
+                                <p>@blog.Content</p>
+                            }
+
+                            @if (Model.User != null && Model.User.RoleId == 2)
+                            {
+                                <a href="/Home/EditBlogPost/@blog.BlogPostId">Edit</a>
+
+                            }
+                        </div>
+                        <hr />
+                    }
+
+                }
+            </div>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+</div>
+

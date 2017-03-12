@@ -1,0 +1,158 @@
+﻿@model Assignment1.Models.BaseViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+@using Microsoft.AspNetCore.Http;
+
+@{ 
+    
+}
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>@ViewBag.Title</title>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <style>
+        body {
+            padding-top: 70px;
+            background-color: #FAFAFA;
+        }
+        .navbar {
+            background-color: #303F9F;
+            border: none;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        }
+
+        .navbar li a, .navbar .navbar-brand {
+            color: #FFFFFF !important;
+            text-transform: uppercase;
+        }
+
+        .navbar-nav li a:hover, .navbar-nav li.active a {
+            text-decoration:underline;
+        }
+
+        .navbar-default .navbar-toggle {
+            border-color: transparent;
+            color: #fff !important;
+        }
+
+        .col-sm-8 {
+            margin-bottom: 16px;
+            padding: 0px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: #212121;
+        }
+
+        small {
+            color: #757575;
+        }
+
+        .post {
+            padding: 0px 8px 0px 8px;
+        }
+
+        .material-card1 {
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            padding: 16px 32px 32px 32px;
+            background-color: #FFFFFF;
+        }
+        .material-card1-sm {
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            padding: 16px 32px 32px 32px;
+            margin: 0px 96px 0px 96px;
+            background-color: #FFFFFF;
+        }
+
+        .material-card2 {
+            box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+            padding: 16px 32px 32px 32px;
+            background-color: #FFFFFF;
+        }
+        .material-card2-sm {
+            box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+            padding: 16px 32px 32px 32px;
+            margin: 0px 96px 0px 96px;
+            background-color: #FFFFFF;
+        }
+        blockquote {
+            border-left-color: #C5CAE9;
+        }
+        hr {
+            background-color: #BDBDBD;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">Home</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    @if (Model.User != null && Model.User.RoleId == 2)
+                    {
+                        <li>
+                            <a asp-controller="Home" asp-action="AddBlogPost">Add</a>
+                        </li>
+                    }
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a asp-controller="Home" asp-action="Register"><span class="glyphicon glyphicon-user"></span>  Register</a></li>
+                    @if (Model.User != null)
+                    {
+                        <li><a asp-controller="Home" asp-action="Logout"><span class="glyphicon glyphicon-log-out"></span>  Logout</a></li>
+                    }
+                    else
+                    {
+                        <li><a asp-controller="Home" asp-action="Login"><span class="glyphicon glyphicon-log-in"></span>  Login</a></li>
+                    }
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                @RenderBody()
+            </div>
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+    <!-- jQuery Version 1.11.1 -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

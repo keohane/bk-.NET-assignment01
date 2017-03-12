@@ -1,0 +1,30 @@
+﻿@model Assignment1.Models.EditBlogPostViewModel
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Edit Blog Post";
+}
+
+<div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+        <div class="material-card1-sm">
+            <form asp-controller="Home" asp-action="UpdateBlogPost">
+                <h2 class="text-center">@ViewBag.Title</h2>
+                <hr />
+                <div class="form-group">
+                    <label for="Title">Title:</label>
+                    <input type="text" class="form-control" name="Title" id="Title" value="@Model.BlogPost.Title">
+                </div>
+                <div class="form-group">
+                    <label for="Content">Content:</label>
+                    <textarea class="form-control" rows="5" name="Content" id="Content">@Model.BlogPost.Content</textarea>
+                </div>
+                <button type="submit" class="btn btn-default">Save Changes</button>
+                <input hidden="hidden" type="number" name="BlogPostId" value="@Model.BlogPost.BlogPostId" />
+                <input hidden="hidden" type="number" name="UserId" value="@Model.BlogPost.UserId" />
+                <input hidden="hidden" type="datetime" name="Posted" value="@Model.BlogPost.Posted" />
+            </form>
+        </div>
+    </div>
+    <div class="col-sm-2"></div>
+</div>

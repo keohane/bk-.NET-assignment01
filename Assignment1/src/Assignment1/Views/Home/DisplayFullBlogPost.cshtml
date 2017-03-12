@@ -1,0 +1,56 @@
+﻿@model Assignment1.Models.DisplayFullBlogPostViewModel
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Full Blog Post";
+}
+
+<div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+        <div class="material-card1">
+            <div class="post">
+                <div class="page-header">
+                    <h1>@Model.BlogPost.Title</h1>
+                    <small>
+                        Author: @Model.BlogPost.Users.FirstName @Model.BlogPost.Users.LastName<br/>
+                        Email: @Model.BlogPost.Users.EmailAddress<br/>
+                        Date Posted: @Model.BlogPost.Posted<br/>
+                    </small>
+                </div>
+                <p>@Model.BlogPost.Content</p>
+            </div>
+            <hr />
+            <div class="post">
+                <h3>Comments:</h3>
+                <ul class="list-group">
+                    @if (@Model.Comments != null)
+                    {
+                        foreach (var c in @Model.Comments)
+                        {
+                            <li class="list-group-item">
+                                <blockquote>
+                                    <p>@c.Content</p>
+                                    <footer>Posted by: @c.Users.FirstName @c.Users.LastName.Substring(0,1).ToUpper().</footer>
+                                </blockquote>
+                            </li>
+                        }
+                    }
+                </ul>
+
+                @if (@Model.User != null)
+                {
+                    <hr />
+                    <h3>Add comment:</h3>
+                    <form asp-controller="Home" asp-action="AddComment" method="post">
+                        <textarea class="form-control" rows="3" name="Content"></textarea>
+                        <input hidden="hidden" value="@Model.BlogPost.BlogPostId" name="BlogPostId" />
+                        <input hidden="hidden" value="@Model.User.UserId" name="UserId" />
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                }
+            </div>
+
+        </div>
+    </div>
+    <div class="col-sm-2"></div>
+</div>
